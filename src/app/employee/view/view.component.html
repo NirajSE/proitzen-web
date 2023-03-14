@@ -1,0 +1,72 @@
+<div class="container">
+    <div *ngIf="employee">
+    <div>
+        <h4 class="text-center mt-3">Employee Profile <a href="#" [routerLink]="['/employee/', employee.emp_no, 'edit']" class="float-end">Edit</a> </h4>
+        <div class="mt-6">
+            <p class="mt-3"> <strong>Employee Name : </strong> {{ employee.first_name }} {{ employee.last_name }} </p>
+            <p class="mt-3"> <strong>Date Of Birth : </strong> {{ employee.birth_date }} </p>
+            <p class="mt-3"> <strong>Gender : </strong> {{ employee.gender }}</p>
+            <p class="mt-3"><strong> Hire Date : </strong> {{ employee.hire_date }}</p>
+        </div>
+    </div>
+
+    <div class="card p-3 mt-3">
+        <h4>Salary Details</h4>
+        <div class="mt-6">
+            <table class="table">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Amount</th>
+                    <th scope="col">From Date</th>
+                    <th scope="col">To Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+        
+                      <tr *ngFor="let sal of employee.salaries">
+                        <td>{{ sal.salary }}</td>
+                        <td>{{ sal.from_date }}</td>
+                        <td>{{ sal.to_date }}</td>
+                      </tr>
+
+                      <div *ngIf="employee.salaries.length > 0; else noSalaries">
+                      </div>
+
+                      <ng-template #noSalaries>
+                        <p class="text-center mt-3">There are no salaries for this employee.</p>
+                      </ng-template>
+                </tbody>
+              </table>
+        </div>
+    </div>
+
+    <div class="card p-3 mt-3">
+        <h4>Designation Details</h4>
+        <div class="mt-6">
+            <table class="table">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">From Date</th>
+                    <th scope="col">To Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let tit of employee.titles">
+                        <td>{{ tit.title }}</td>
+                        <td>{{ tit.from_date }}</td>
+                        <td>{{ tit.to_date }}</td>
+                      </tr>
+
+                      <div *ngIf="employee.titles.length > 0; else noTitles">
+                      </div>
+
+                      <ng-template #noTitles>
+                        <p class="text-center mt-3">There are no job Designations for this employee.</p>
+                      </ng-template>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+</div>
